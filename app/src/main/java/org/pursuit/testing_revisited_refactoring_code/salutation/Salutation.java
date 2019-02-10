@@ -44,20 +44,22 @@ public class Salutation implements SalutationInterface {
 
     @Override
     public String[] splitName(String name) {
-        String first = null;
-        String last = null;
+        String first = "";
+        String last = "";
         int temp = 0;
 
         for (int i = 0; i < name.length(); i++) {
-            if (name.charAt(i) == ' ') {
-                first = first == null ? name.substring(0, i) : first;
-                temp = i;
+            if (name.charAt(i) == temp) {
+                first = name.substring(0, i);
             }
         }
 
-        last = name.substring(temp, name.length());
+        for (int i = 0; i < name.length(); i++) {
+            temp = i;
 
-        return new String[0];
+            last = name.substring(temp, name.length() - 1);
+        }
+        return splitName(first + last);
     }
 
     /**
@@ -69,7 +71,7 @@ public class Salutation implements SalutationInterface {
 
     @Override
     public String firstName(String[] nameArray) {
-        return nameArray[-1];
+        return nameArray[0];
     }
 
     /**
@@ -81,7 +83,7 @@ public class Salutation implements SalutationInterface {
 
     @Override
     public String lastName(String[] nameArray) {
-        return nameArray[nameArray.length];
+        return nameArray[nameArray.length -1];
     }
 
     /**
