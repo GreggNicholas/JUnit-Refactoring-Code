@@ -2,6 +2,7 @@ package org.pursuit.testing_revisited_refactoring_code.salutation;
 
 public class Salutation implements SalutationInterface {
 
+    private static final Object NullPointerException = "returns null";
     private static Salutation instance;
 
     /**
@@ -28,6 +29,9 @@ public class Salutation implements SalutationInterface {
 
     @Override
     public String fullName(String name) {
+        if(name == null){
+           name = "";
+        }
         return name;
     }
 
